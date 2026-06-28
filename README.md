@@ -6,6 +6,10 @@ Users can create, view, update, and delete tasks with task status management.
 ##Backend API:
 https://task-manager-1-7tzh.onrender.com
 
+##Frontend API:
+https://task-manager-nine-rose-74.vercel.app
+
+
 ##Features
 
 - Create new tasks
