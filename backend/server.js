@@ -5,19 +5,18 @@ require("dotenv").config();
 
 const app = express();
 
-// ✅ FIXED CORS (important for deployment)
+
 app.use(cors({
     origin: [
-        "http://localhost:5173", // local frontend (Vite)
-        "http://localhost:3000", // CRA
-        "https://your-frontend-domain.com" // production frontend
+        "http://localhost:5173",
+        "http://localhost:3000",
+        "https://task-manager-phi-mauve-69.vercel.app"
     ],
     credentials: true
 }));
 
 app.use(express.json());
 
-// ✅ MongoDB connection
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
     console.log("MongoDB Connected");
@@ -26,16 +25,15 @@ mongoose.connect(process.env.MONGO_URI)
     console.log("Mongo Error:", err);
 });
 
-// test route
 app.get("/", (req, res) => {
     res.send("Task Tracker API Running");
 });
 
-// routes
+
 const taskRoutes = require("./routes/taskRoutes");
 app.use("/api/tasks", taskRoutes);
 
-// port
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
