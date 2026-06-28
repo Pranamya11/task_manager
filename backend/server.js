@@ -9,9 +9,15 @@ app.use(cors({
     origin: [
         "http://localhost:5173",
         "http://localhost:3000",
-        process.env.CLIENT_URL
+        "https://task-manager-nine-rose-74.vercel.app"
     ],
-    credentials: true
+    methods:[
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+    ],
+    credentials:true
 }));
 
 app.use(express.json());
