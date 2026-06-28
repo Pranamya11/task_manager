@@ -45,6 +45,10 @@ https://task-manager-nine-rose-74.vercel.app
 - Backend: Render
 - Database: MongoDB Atlas
 
+## API check 
+-Postman
+
+
 
 ## Clone Repository
 
