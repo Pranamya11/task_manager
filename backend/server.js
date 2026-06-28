@@ -5,12 +5,11 @@ require("dotenv").config();
 
 const app = express();
 
-
 app.use(cors({
     origin: [
         "http://localhost:5173",
         "http://localhost:3000",
-        "https://task-manager-phi-mauve-69.vercel.app"
+        process.env.CLIENT_URL
     ],
     credentials: true
 }));
