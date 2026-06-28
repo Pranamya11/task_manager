@@ -5,34 +5,39 @@ require("dotenv").config();
 
 const app = express();
 
+// ✅ FIXED CORS (important for deployment)
+app.use(cors({
+    origin: [
+        "http://localhost:5173", // local frontend (Vite)
+        "http://localhost:3000", // CRA
+        "https://your-frontend-domain.com" // production frontend
+    ],
+    credentials: true
+}));
 
-app.use(cors());
 app.use(express.json());
 
-
+// ✅ MongoDB connection
 mongoose.connect(process.env.MONGO_URI)
-.then(()=>{
+.then(() => {
     console.log("MongoDB Connected");
 })
-.catch((err)=>{
-    console.log(err);
+.catch((err) => {
+    console.log("Mongo Error:", err);
 });
 
-
-app.get("/",(req,res)=>{
+// test route
+app.get("/", (req, res) => {
     res.send("Task Tracker API Running");
 });
 
+// routes
+const taskRoutes = require("./routes/taskRoutes");
+app.use("/api/tasks", taskRoutes);
 
-const taskRoutes=require("./routes/taskRoutes");
+// port
+const PORT = process.env.PORT || 5000;
 
-app.use("/api/tasks",taskRoutes);
-
-
-
-const PORT=process.env.PORT || 5000;
-
-
-app.listen(PORT,()=>{
+app.listen(PORT, () => {
     console.log(`Server running on ${PORT}`);
 });
